@@ -1,0 +1,42 @@
+name: Validate Reports
+
+on:
+  push:
+    paths:
+      - "reports/**/report.json"
+      - "schemas/**"
+      - "scripts/**"
+  pull_request:
+    paths:
+      - "reports/**/report.json"
+      - "schemas/**"
+      - "scripts/**"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install jsonschema
+
+      - name: Validate all reports against schema + cross-field rules
+        run: python3 scripts/validate.py
+
+      - name: Verify generated Markdown is up to date
+        run: |
+          for f in $(find reports -name report.json); do
+            dir=$(dirname "$f")
+            python3 scripts/generate_markdown.py "$f" > /tmp/generated.md
+            if ! diff -q /tmp/generated.md "$dir/report.md" >/dev/null 2>&1; then
+              echo "::error::$dir/report.md is out of date — re-run generate_markdown.py"
+              exit 1
+            fi
+          done
+          echo "All Markdown reports are in sync with their JSON."

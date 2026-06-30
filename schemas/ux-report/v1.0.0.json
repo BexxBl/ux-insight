@@ -1,0 +1,431 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uxaudit.platform/schemas/ux-report/1.0.0",
+  "title": "UX Report",
+  "description": "Frontend-agnostic, versioned data model for UX audit reports. One document = one report for one target at one point in time. Designed so any renderer (HTML, React, Angular, PDF) consumes the same document without transformation.",
+  "type": "object",
+  "required": ["schemaVersion", "reportId", "reportType", "client", "target", "meta", "scoring", "findings"],
+  "additionalProperties": false,
+
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Semver of THIS schema. Renderers branch on the major version. Additive changes bump minor; breaking changes bump major. Never reuse a version number."
+    },
+
+    "reportId": {
+      "type": "string",
+      "description": "Stable unique id for this report instance (UUID/ULID). Used by report-history and as a PDF/export filename seed.",
+      "examples": ["01J9X8M2K4REBECCABLISCHKE0001"]
+    },
+
+    "reportType": {
+      "type": "string",
+      "description": "Discriminator for future report families. A renderer can show type-specific sections. 'ux_audit' is the general heuristic+a11y review; the others are reserved so adding them later is non-breaking.",
+      "enum": ["ux_audit", "accessibility_audit", "cro_audit", "design_system_review", "mobile_review"],
+      "default": "ux_audit"
+    },
+
+    "status": {
+      "type": "string",
+      "description": "Lifecycle state. Lets the platform list drafts vs. delivered reports without a separate store.",
+      "enum": ["draft", "in_review", "delivered", "archived"],
+      "default": "draft"
+    },
+
+    "locale": {
+      "type": "string",
+      "description": "BCP-47 language tag of the PRIMARY rendered prose in this document (problem/recommendation text etc.).",
+      "examples": ["de-DE", "en-US"],
+      "default": "de-DE"
+    },
+
+    "i18n": {
+      "type": "object",
+      "description": "Optional translation overlay. Maps a locale to an object of dotted JSON-Pointers→translated string, so a single report can be shown in multiple languages without duplicating the whole document. v1 may leave this empty; the field exists so adding localization later is non-breaking.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "type": "string" }
+      },
+      "default": {}
+    },
+
+    "client": {
+      "type": "object",
+      "description": "Who the report is FOR. Separated from 'target' so one client can own many targets/reports (multi-client platform).",
+      "required": ["clientId", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "clientId": { "type": "string", "description": "Stable id; groups reports under one client in history." },
+        "name": { "type": "string" },
+        "contactName": { "type": "string" },
+        "contactEmail": { "type": "string", "format": "email" }
+      }
+    },
+
+    "branding": {
+      "type": "object",
+      "description": "Per-report branding overlay (white-label). Renderer falls back to platform defaults when a field is absent. Kept as semantic tokens, NOT raw CSS, so any frontend/PDF engine can map them.",
+      "additionalProperties": false,
+      "properties": {
+        "logoUrl": { "type": "string", "format": "uri" },
+        "primaryColor": { "type": "string", "description": "Hex. Maps to the renderer's primary token." },
+        "accentColor": { "type": "string", "description": "Hex." },
+        "fontFamily": { "type": "string", "description": "Font stack name; renderer resolves loading." },
+        "footerText": { "type": "string" }
+      }
+    },
+
+    "theme": {
+      "type": "string",
+      "description": "Preferred visual theme hint for renderers. 'auto' respects user/system preference.",
+      "enum": ["light", "dark", "auto"],
+      "default": "auto"
+    },
+
+    "target": {
+      "type": "object",
+      "description": "What was audited. A 'target' is one website/app/screen-set. Multiple targets per client; multiple reports per target over time.",
+      "required": ["targetId", "name", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "targetId": { "type": "string" },
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "type": { "type": "string", "enum": ["website", "web_app", "mobile_app", "prototype"], "default": "website" },
+        "description": { "type": "string" }
+      }
+    },
+
+    "meta": {
+      "type": "object",
+      "description": "Provenance and method. Critical for trust/defensibility and for the 'report history' feature (compare runs).",
+      "required": ["createdAt", "author", "methodology"],
+      "additionalProperties": false,
+      "properties": {
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "version": { "type": "string", "description": "Report content revision (independent of schemaVersion). Increment when findings change.", "default": "1.0" },
+        "previousReportId": { "type": ["string", "null"], "description": "Links to the prior report for the same target → enables history/diff/trend.", "default": null },
+        "author": {
+          "type": "object",
+          "required": ["name"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string" },
+            "organization": { "type": "string" }
+          }
+        },
+        "methodology": {
+          "type": "object",
+          "description": "How findings were produced — sets the confidence ceiling honestly.",
+          "required": ["sources"],
+          "additionalProperties": false,
+          "properties": {
+            "sources": {
+              "type": "array",
+              "description": "Evidence sources actually used.",
+              "items": { "type": "string", "enum": ["source_code", "rendered_dom", "manual_keyboard_test", "screen_reader_test", "automated_axe", "automated_lighthouse", "device_test", "analytics", "user_testing", "heuristic_expert_review"] },
+              "minItems": 1
+            },
+            "standards": {
+              "type": "array",
+              "description": "Reference frameworks applied.",
+              "items": { "type": "string", "examples": ["WCAG 2.2 AA", "Nielsen 10 Heuristics"] },
+              "default": []
+            },
+            "limitations": {
+              "type": "array",
+              "description": "What could NOT be verified with the sources above (e.g. runtime performance). Renderer shows this prominently to keep the report defensible.",
+              "items": { "type": "string" },
+              "default": []
+            }
+          }
+        }
+      }
+    },
+
+    "summary": {
+      "type": "object",
+      "description": "Top-of-report narrative. 'aiGenerated' flag + 'aiModel' make AI-summaries auditable and let the UI badge them. Human-edited summaries set aiGenerated=false.",
+      "additionalProperties": false,
+      "properties": {
+        "headline": { "type": "string", "description": "One-sentence verdict." },
+        "narrative": { "type": "string", "description": "2–4 paragraph executive summary (Markdown-safe plain text)." },
+        "keyTakeaways": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "aiGenerated": { "type": "boolean", "default": false },
+        "aiModel": { "type": ["string", "null"], "default": null },
+        "generatedAt": { "type": ["string", "null"], "format": "date-time", "default": null }
+      }
+    },
+
+    "scoring": {
+      "type": "object",
+      "description": "Quantitative layer. Categories are DATA, not hardcoded, so report types can define their own dimensions. Overall is derived from weighted category scores; the weights ship with the report so the number is reproducible and explainable.",
+      "required": ["scale", "overall", "categories"],
+      "additionalProperties": false,
+      "properties": {
+        "scale": {
+          "type": "object",
+          "required": ["min", "max"],
+          "additionalProperties": false,
+          "properties": {
+            "min": { "type": "number", "default": 0 },
+            "max": { "type": "number", "default": 100 },
+            "bands": {
+              "type": "array",
+              "description": "Named ranges → drive badge color/label without renderer hardcoding thresholds.",
+              "items": {
+                "type": "object",
+                "required": ["label", "min", "max", "color"],
+                "additionalProperties": false,
+                "properties": {
+                  "label": { "type": "string", "examples": ["Kritisch", "Schwach", "Solide", "Stark", "Exzellent"] },
+                  "min": { "type": "number" },
+                  "max": { "type": "number" },
+                  "color": { "type": "string", "description": "Semantic token name OR hex." }
+                }
+              },
+              "default": []
+            }
+          }
+        },
+        "overall": {
+          "type": "number",
+          "description": "Weighted overall score. SHOULD equal round(sum(category.score * category.weight)/sum(weights)). Stored explicitly so renderers/PDF don't recompute."
+        },
+        "overallBand": { "type": "string", "description": "Resolved band label for 'overall' (denormalized for convenience)." },
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["key", "label", "score", "weight"],
+            "additionalProperties": false,
+            "properties": {
+              "key": { "type": "string", "description": "Stable machine key (snake_case), e.g. 'accessibility'. Used for i18n + diffing across reports." },
+              "label": { "type": "string", "description": "Human label in report locale." },
+              "score": { "type": "number" },
+              "weight": { "type": "number", "description": "Relative weight for the overall calc. Renderer can also show as importance.", "default": 1 },
+              "band": { "type": "string", "description": "Resolved band label for this category." },
+              "rationale": { "type": "string", "description": "Why this score — keeps numbers defensible." },
+              "previousScore": { "type": ["number", "null"], "description": "Same category in previousReportId → trend arrows.", "default": null }
+            }
+          }
+        }
+      }
+    },
+
+    "strengths": {
+      "type": "array",
+      "description": "Explicitly positive findings. Same shape spirit as findings but lighter — a premium report leads with what works.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "categoryKey": { "type": "string", "description": "Optional link to a scoring category." },
+          "evidence": { "$ref": "#/$defs/evidence" }
+        }
+      },
+      "default": []
+    },
+
+    "quickWins": {
+      "type": "array",
+      "description": "Curated high-value/low-effort actions. Each MAY reference a finding by id (single source of truth) OR stand alone.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "findingId": { "type": ["string", "null"], "description": "If set, this quick win is the actionable face of that finding.", "default": null },
+          "effort": { "$ref": "#/$defs/effort" },
+          "businessImpact": { "$ref": "#/$defs/impact" }
+        }
+      },
+      "default": []
+    },
+
+    "recommendationsRoadmap": {
+      "type": "array",
+      "description": "Long-term / strategic improvements grouped by horizon. Separate from quickWins so the UI can render a timeline.",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "horizon"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "horizon": { "type": "string", "enum": ["now", "next", "later"], "description": "now=this sprint, next=this quarter, later=strategic." },
+          "relatedFindingIds": { "type": "array", "items": { "type": "string" }, "default": [] }
+        }
+      },
+      "default": []
+    },
+
+    "findings": {
+      "type": "array",
+      "description": "The core. Each finding is self-contained and renderer-ready. Order is NOT significance — use severity + 'rank' for ordering.",
+      "items": { "$ref": "#/$defs/finding" }
+    },
+
+    "attachments": {
+      "type": "array",
+      "description": "Top-level media not bound to a single finding (e.g. cover screenshot, methodology PDF). Per-finding media live on the finding.",
+      "items": { "$ref": "#/$defs/media" },
+      "default": []
+    },
+
+    "tags": {
+      "type": "array",
+      "description": "Free-form labels for filtering across the platform.",
+      "items": { "type": "string" },
+      "default": []
+    }
+  },
+
+  "$defs": {
+    "severity": {
+      "type": "string",
+      "description": "User-impact severity, independent of effort/business.",
+      "enum": ["critical", "high", "medium", "low"]
+    },
+    "impact": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "effort": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "confidence": {
+      "type": "string",
+      "description": "How sure the issue exists given the methodology sources. high=verified in code/test; medium=strongly inferable; low=needs runtime/user data to confirm.",
+      "enum": ["high", "medium", "low"]
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Concrete proof. Keeps findings defensible and lets the UI deep-link to the offending code/region.",
+      "additionalProperties": false,
+      "properties": {
+        "summary": { "type": "string", "description": "Plain-language statement of the evidence." },
+        "locations": {
+          "type": "array",
+          "description": "Where in the artifact the issue lives.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "source": { "type": "string", "enum": ["source_code", "dom", "screenshot", "tool_output"] },
+              "file": { "type": "string", "examples": ["script.js"] },
+              "lines": { "type": "string", "examples": ["38-46"] },
+              "selector": { "type": "string", "description": "CSS/DOM selector if applicable." },
+              "note": { "type": "string" }
+            }
+          },
+          "default": []
+        },
+        "measurements": {
+          "type": "array",
+          "description": "Quantified facts (e.g. contrast ratios). Structured so charts can read them.",
+          "items": {
+            "type": "object",
+            "required": ["label", "value"],
+            "additionalProperties": false,
+            "properties": {
+              "label": { "type": "string", "examples": ["Kontrast --muted auf Weiß"] },
+              "value": { "type": ["number", "string"] },
+              "unit": { "type": "string", "examples": [":1"] },
+              "threshold": { "type": ["number", "string"], "description": "Pass/fail boundary." },
+              "passes": { "type": "boolean" }
+            }
+          },
+          "default": []
+        }
+      }
+    },
+    "media": {
+      "type": "object",
+      "description": "An attachment/screenshot. URL-based so storage backend is swappable; 'placeholder' lets a report be authored before images exist.",
+      "required": ["id", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["screenshot", "annotation", "video", "document"] },
+        "url": { "type": ["string", "null"], "format": "uri", "default": null },
+        "placeholder": { "type": "boolean", "description": "true = image not yet captured; renderer shows a labelled slot.", "default": false },
+        "caption": { "type": "string" },
+        "alt": { "type": "string", "description": "Accessibility text for the media itself." },
+        "annotations": {
+          "type": "array",
+          "description": "Optional callouts on the image (x/y in %).",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "x": { "type": "number" }, "y": { "type": "number" },
+              "label": { "type": "string" }
+            }
+          },
+          "default": []
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": ["id", "categoryKey", "title", "severity", "businessImpact", "effort", "confidence", "problem", "recommendation"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "Stable id (e.g. 'F-P1'). Referenced by quickWins/roadmap and across report history for diffing." },
+        "rank": { "type": "integer", "description": "Optional explicit display order within its severity group." },
+        "categoryKey": { "type": "string", "description": "Must match a scoring.categories[].key." },
+        "categoryLabel": { "type": "string", "description": "Denormalized human label for convenience." },
+        "title": { "type": "string" },
+        "severity": { "$ref": "#/$defs/severity" },
+        "businessImpact": { "$ref": "#/$defs/impact" },
+        "effort": { "$ref": "#/$defs/effort" },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "status": { "type": "string", "enum": ["open", "acknowledged", "in_progress", "resolved", "wont_fix"], "default": "open", "description": "Lets the same document track remediation over time (history feature)." },
+        "problem": { "type": "string", "description": "What the issue is." },
+        "evidence": { "$ref": "#/$defs/evidence" },
+        "recommendation": { "type": "string", "description": "How to fix — specific and actionable." },
+        "userBenefit": { "type": "string", "description": "Expected benefit for the user." },
+        "businessBenefit": { "type": "string", "description": "Expected benefit for the business." },
+        "uxPrinciple": { "type": "string", "description": "Related, named UX principle (e.g. 'Nielsen #3: User control & freedom')." },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "isAccessibilityIssue": { "type": "boolean", "default": false },
+            "wcag": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["criterion"],
+                "additionalProperties": false,
+                "properties": {
+                  "criterion": { "type": "string", "examples": ["2.4.7"] },
+                  "name": { "type": "string", "examples": ["Focus Visible"] },
+                  "level": { "type": "string", "enum": ["A", "AA", "AAA"] }
+                }
+              },
+              "default": []
+            }
+          }
+        },
+        "media": { "type": "array", "items": { "$ref": "#/$defs/media" }, "default": [] },
+        "isOpportunity": { "type": "boolean", "description": "true = proactive enhancement (delight/clarity/trust), not a defect.", "default": false },
+        "tags": { "type": "array", "items": { "type": "string" }, "default": [] }
+      }
+    }
+  }
+}

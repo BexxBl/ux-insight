@@ -5,22 +5,18 @@
   "status": "delivered",
   "locale": "de-DE",
   "i18n": {},
-
   "client": {
     "clientId": "rebecca-blischke",
     "name": "Rebecca Blischke",
     "contactName": "Rebecca Blischke"
   },
-
   "branding": {
     "primaryColor": "#4361ee",
     "accentColor": "#9072ff",
     "fontFamily": "Syne, Inter, sans-serif",
     "footerText": "UX Insight · UX Audit"
   },
-
   "theme": "auto",
-
   "target": {
     "targetId": "rebeccablischke-de",
     "name": "Portfolio Rebecca Blischke",
@@ -28,7 +24,6 @@
     "type": "website",
     "description": "Persönliches UX-Designer-Portfolio als horizontaler One-Pager (JS-gesteuerter Slider) mit Light/Dark-Theme, Skill- und Projekt-Overlays sowie Formspree-Kontaktformular."
   },
-
   "meta": {
     "createdAt": "2026-06-30T12:00:00+02:00",
     "updatedAt": "2026-06-30T12:00:00+02:00",
@@ -40,8 +35,14 @@
       "organization": "UX Insight"
     },
     "methodology": {
-      "sources": ["source_code", "heuristic_expert_review"],
-      "standards": ["WCAG 2.2 AA", "Nielsen 10 Heuristics"],
+      "sources": [
+        "source_code",
+        "heuristic_expert_review"
+      ],
+      "standards": [
+        "WCAG 2.2 AA",
+        "Nielsen 10 Heuristics"
+      ],
       "limitations": [
         "Reale Laufzeit-Performance (LCP, CLS, TBT) wurde NICHT gemessen — erfordert Lighthouse/WebPageTest am Live-System.",
         "Rendering auf echten Geräten/Viewports wurde NICHT getestet — Responsive-Aussagen basieren auf CSS-/JS-Code, nicht auf visueller Prüfung.",
@@ -50,7 +51,6 @@
       ]
     }
   },
-
   "summary": {
     "headline": "Gestalterisch starkes, technisch sauber gebautes Portfolio mit einer klaren Schwachstelle: Barrierefreiheit und die Tastatur-/Fokus-Ebene der Kern-Interaktionen.",
     "narrative": "Das Portfolio hinterlässt einen überdurchschnittlichen Gesamteindruck: eigenständige Markenhandschrift, konsequente Token-basierte CSS-Architektur mit Light/Dark-Theme und ein funktionierendes, mit Feedback versehenes Kontaktformular. Die Engineering-Grundlage ist solide — Animationen, Theme-Persistenz und Modal-Logik sind sauber umgesetzt.\n\nDie zentrale Schwäche ist systematisch, nicht zufällig: Die Seite besitzt keinerlei sichtbare Fokus-Stile, respektiert keine Bewegungsreduktion und kapselt ihren Inhalt nicht in Landmark-Regionen. Die wichtigsten Interaktionen — Skill- und Projekt-Karten — sind als klickbare DIVs ohne Tastatur-Zugang gebaut. Für ein Portfolio, das Barrierefreiheit und Nutzerzentrierung als Kernkompetenz verkauft, ist das die mit Abstand wichtigste Baustelle, weil es eine inhaltliche Glaubwürdigkeitsfrage berührt.\n\nDie zweite konzeptionelle Frage ist das horizontale Scroll-Hijacking: gestalterisch markant, aber ein bekannter Usability-Reibungspunkt, der vom UX-Fachpublikum kritisch beurteilt wird. Hier lohnt eine bewusste Entscheidung statt eines Kompromisses.\n\nDie gute Nachricht: Fast alle Befunde sind mit geringem Aufwand behebbar, und die vorhandene Architektur (Design-Tokens, sauberes JS) macht die Korrekturen einfach. Drei kleine Eingriffe heben das Accessibility-Niveau spürbar.",
@@ -64,32 +64,111 @@
     "aiModel": null,
     "generatedAt": null
   },
-
   "scoring": {
     "scale": {
       "min": 0,
       "max": 100,
       "bands": [
-        { "label": "Kritisch", "min": 0,  "max": 39,  "color": "#ef4444" },
-        { "label": "Schwach",  "min": 40, "max": 59,  "color": "#f59e0b" },
-        { "label": "Solide",   "min": 60, "max": 74,  "color": "#eab308" },
-        { "label": "Stark",    "min": 75, "max": 89,  "color": "#06c48b" },
-        { "label": "Exzellent","min": 90, "max": 100, "color": "#10b981" }
+        {
+          "label": "Kritisch",
+          "min": 0,
+          "max": 39,
+          "color": "#ef4444"
+        },
+        {
+          "label": "Schwach",
+          "min": 40,
+          "max": 59,
+          "color": "#f59e0b"
+        },
+        {
+          "label": "Solide",
+          "min": 60,
+          "max": 74,
+          "color": "#eab308"
+        },
+        {
+          "label": "Stark",
+          "min": 75,
+          "max": 89,
+          "color": "#06c48b"
+        },
+        {
+          "label": "Exzellent",
+          "min": 90,
+          "max": 100,
+          "color": "#10b981"
+        }
       ]
     },
     "overall": 70,
     "overallBand": "Solide",
     "categories": [
-      { "key": "navigation",     "label": "Navigation",        "score": 64, "weight": 1.0, "band": "Solide",  "rationale": "JS-Slider funktioniert, aber Scroll-Hijacking und fehlender No-JS-/Fokus-Fallback senken den Wert.", "previousScore": null },
-      { "key": "accessibility",  "label": "Barrierefreiheit",  "score": 52, "weight": 1.5, "band": "Schwach", "rationale": "Keine Fokus-Stile, keine Reduced-Motion, kein <main>/Skip-Link, klickbare DIVs ohne Tastaturzugang.", "previousScore": null },
-      { "key": "visual_design",  "label": "Visuelles Design",  "score": 84, "weight": 1.0, "band": "Stark",   "rationale": "Eigenständige Markenhandschrift, konsistente Token-Architektur, Light/Dark sauber.", "previousScore": null },
-      { "key": "mobile_ux",      "label": "Mobile UX",         "score": 74, "weight": 1.0, "band": "Solide",  "rationale": "Code-seitig dedizierter Mobile-Pfad (kein Hijack, eigenes Menü); ungemessen auf echten Geräten.", "previousScore": null },
-      { "key": "content",        "label": "Content-Struktur",  "score": 78, "weight": 1.0, "band": "Stark",   "rationale": "Klare IA, gute Projekt-/CV-Struktur; Texte ausgeklammert (Mockup-Stand).", "previousScore": null },
-      { "key": "consistency",    "label": "Konsistenz",        "score": 74, "weight": 1.0, "band": "Solide",  "rationale": "Innerhalb der Seite konsistent; Token-Duplizierung über das Seiten-Ökosystem hinweg.", "previousScore": null },
-      { "key": "trust",          "label": "Vertrauen",         "score": 72, "weight": 1.0, "band": "Solide",  "rationale": "Funktionierendes Formular, Zertifikate, klare Vita; A11y-Lücken mindern Fachglaubwürdigkeit.", "previousScore": null }
+      {
+        "key": "navigation",
+        "label": "Navigation",
+        "score": 64,
+        "weight": 1.0,
+        "band": "Solide",
+        "rationale": "JS-Slider funktioniert, aber Scroll-Hijacking und fehlender No-JS-/Fokus-Fallback senken den Wert.",
+        "previousScore": null
+      },
+      {
+        "key": "accessibility",
+        "label": "Barrierefreiheit",
+        "score": 52,
+        "weight": 1.5,
+        "band": "Schwach",
+        "rationale": "Keine Fokus-Stile, keine Reduced-Motion, kein <main>/Skip-Link, klickbare DIVs ohne Tastaturzugang.",
+        "previousScore": null
+      },
+      {
+        "key": "visual_design",
+        "label": "Visuelles Design",
+        "score": 84,
+        "weight": 1.0,
+        "band": "Stark",
+        "rationale": "Eigenständige Markenhandschrift, konsistente Token-Architektur, Light/Dark sauber.",
+        "previousScore": null
+      },
+      {
+        "key": "mobile_ux",
+        "label": "Mobile UX",
+        "score": 74,
+        "weight": 1.0,
+        "band": "Solide",
+        "rationale": "Code-seitig dedizierter Mobile-Pfad (kein Hijack, eigenes Menü); ungemessen auf echten Geräten.",
+        "previousScore": null
+      },
+      {
+        "key": "content",
+        "label": "Content-Struktur",
+        "score": 78,
+        "weight": 1.0,
+        "band": "Stark",
+        "rationale": "Klare IA, gute Projekt-/CV-Struktur; Texte ausgeklammert (Mockup-Stand).",
+        "previousScore": null
+      },
+      {
+        "key": "consistency",
+        "label": "Konsistenz",
+        "score": 74,
+        "weight": 1.0,
+        "band": "Solide",
+        "rationale": "Innerhalb der Seite konsistent; Token-Duplizierung über das Seiten-Ökosystem hinweg.",
+        "previousScore": null
+      },
+      {
+        "key": "trust",
+        "label": "Vertrauen",
+        "score": 72,
+        "weight": 1.0,
+        "band": "Solide",
+        "rationale": "Funktionierendes Formular, Zertifikate, klare Vita; A11y-Lücken mindern Fachglaubwürdigkeit.",
+        "previousScore": null
+      }
     ]
   },
-
   "strengths": [
     {
       "id": "S-P1",
@@ -98,7 +177,14 @@
       "categoryKey": "trust",
       "evidence": {
         "summary": "Async-Submit mit try/catch, res.ok-Prüfung, sichtbarem Erfolg/Fehler, Button-State.",
-        "locations": [{ "source": "source_code", "file": "script.js", "lines": "197-217", "note": "Formspree-Handler" }],
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "197-217",
+            "note": "Formspree-Handler"
+          }
+        ],
         "measurements": []
       }
     },
@@ -109,7 +195,20 @@
       "categoryKey": "visual_design",
       "evidence": {
         "summary": ":root-Token-Set inkl. Dark-Override; Theme wird in localStorage persistiert.",
-        "locations": [{ "source": "source_code", "file": "style.css", "lines": "1-60", "note": "Token-Definitionen" }, { "source": "source_code", "file": "script.js", "lines": "21-29", "note": "Theme-Persistenz" }]
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "style.css",
+            "lines": "1-60",
+            "note": "Token-Definitionen"
+          },
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "21-29",
+            "note": "Theme-Persistenz"
+          }
+        ]
       }
     },
     {
@@ -119,26 +218,92 @@
       "categoryKey": "visual_design",
       "evidence": {
         "summary": "rAF-Counter, IntersectionObserver-Reveals, ESC-/Backdrop-Close.",
-        "locations": [{ "source": "source_code", "file": "script.js", "lines": "66-135", "note": "Observer + Animationen" }]
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "66-135",
+            "note": "Observer + Animationen"
+          }
+        ]
       }
     }
   ],
-
   "quickWins": [
-    { "id": "QW-P1", "title": "Globalen :focus-visible-Stil einführen", "findingId": "F-P1", "effort": "low", "businessImpact": "high" },
-    { "id": "QW-P2", "title": "prefers-reduced-motion respektieren + Count-ups auf Endwert", "findingId": "F-P2", "effort": "low", "businessImpact": "medium" },
-    { "id": "QW-P3", "title": "<main>-Landmark + Skip-Link ergänzen", "findingId": "F-P3", "effort": "low", "businessImpact": "medium" },
-    { "id": "QW-P4", "title": "Skill-/Projekt-Karten zu echten Buttons machen", "findingId": "F-P4", "effort": "medium", "businessImpact": "high" },
-    { "id": "QW-P5", "title": "Kontrast von --muted und --green korrigieren", "findingId": "F-P6", "effort": "low", "businessImpact": "medium" }
+    {
+      "id": "QW-P1",
+      "title": "Globalen :focus-visible-Stil einführen",
+      "findingId": "F-P1",
+      "effort": "low",
+      "businessImpact": "high"
+    },
+    {
+      "id": "QW-P2",
+      "title": "prefers-reduced-motion respektieren + Count-ups auf Endwert",
+      "findingId": "F-P2",
+      "effort": "low",
+      "businessImpact": "medium"
+    },
+    {
+      "id": "QW-P3",
+      "title": "<main>-Landmark + Skip-Link ergänzen",
+      "findingId": "F-P3",
+      "effort": "low",
+      "businessImpact": "medium"
+    },
+    {
+      "id": "QW-P4",
+      "title": "Skill-/Projekt-Karten zu echten Buttons machen",
+      "findingId": "F-P4",
+      "effort": "medium",
+      "businessImpact": "high"
+    },
+    {
+      "id": "QW-P5",
+      "title": "Kontrast von --muted und --green korrigieren",
+      "findingId": "F-P6",
+      "effort": "low",
+      "businessImpact": "medium"
+    }
   ],
-
   "recommendationsRoadmap": [
-    { "id": "R-P1", "title": "A11y-Grundausstattung als Bau-Standard etablieren", "description": "Fokus-Stil, Landmarks, Dialog-Pattern und Reduced-Motion als wiederverwendbares Snippet in den eigenen Workflow aufnehmen — passt zum 'reuse before create'-Prinzip und verhindert Wiederholung der gleichen Lücken in künftigen Projekten.", "horizon": "next", "relatedFindingIds": ["F-P1", "F-P3", "F-P5"] },
-    { "id": "R-P2", "title": "Scroll-Paradigma bewusst entscheiden", "description": "Entweder das horizontale Konzept voll barrierefrei und tastaturbedienbar ausbauen (mit Vor/Zurück-Controls, Fokusführung, Reduced-Motion-Fallback auf vertikal) oder konsequent auf ein vertikales Layout wechseln. Den jetzigen Mittelweg auflösen.", "horizon": "now", "relatedFindingIds": ["F-P5"] },
-    { "id": "R-P3", "title": "Geteiltes Mini-Design-System extrahieren", "description": "Die bereits saubere Token-Basis in eine geteilte tokens.css plus 2–3 Komponenten (Button, Form-Field, Card) überführen, die alle drei Projekte des Ökosystems nutzen. Senkt Pflegeaufwand und Drift-Risiko dauerhaft.", "horizon": "later", "relatedFindingIds": ["F-P7"] },
-    { "id": "R-P4", "title": "Automatisierte A11y-Checks in den Deploy aufnehmen", "description": "axe-core/Lighthouse-CI als Pre-Deploy-Schritt, der Fokus-, Kontrast- und Landmark-Regressionen abfängt, bevor sie auf Strato live gehen.", "horizon": "later", "relatedFindingIds": [] }
+    {
+      "id": "R-P1",
+      "title": "A11y-Grundausstattung als Bau-Standard etablieren",
+      "description": "Fokus-Stil, Landmarks, Dialog-Pattern und Reduced-Motion als wiederverwendbares Snippet in den eigenen Workflow aufnehmen — passt zum 'reuse before create'-Prinzip und verhindert Wiederholung der gleichen Lücken in künftigen Projekten.",
+      "horizon": "next",
+      "relatedFindingIds": [
+        "F-P1",
+        "F-P3",
+        "F-P5"
+      ]
+    },
+    {
+      "id": "R-P2",
+      "title": "Scroll-Paradigma bewusst entscheiden",
+      "description": "Entweder das horizontale Konzept voll barrierefrei und tastaturbedienbar ausbauen (mit Vor/Zurück-Controls, Fokusführung, Reduced-Motion-Fallback auf vertikal) oder konsequent auf ein vertikales Layout wechseln. Den jetzigen Mittelweg auflösen.",
+      "horizon": "now",
+      "relatedFindingIds": [
+        "F-P5"
+      ]
+    },
+    {
+      "id": "R-P3",
+      "title": "Geteiltes Mini-Design-System extrahieren",
+      "description": "Die bereits saubere Token-Basis in eine geteilte tokens.css plus 2–3 Komponenten (Button, Form-Field, Card) überführen, die alle drei Projekte des Ökosystems nutzen. Senkt Pflegeaufwand und Drift-Risiko dauerhaft.",
+      "horizon": "later",
+      "relatedFindingIds": [
+        "F-P7"
+      ]
+    },
+    {
+      "id": "R-P4",
+      "title": "Automatisierte A11y-Checks in den Deploy aufnehmen",
+      "description": "axe-core/Lighthouse-CI als Pre-Deploy-Schritt, der Fokus-, Kontrast- und Landmark-Regressionen abfängt, bevor sie auf Strato live gehen.",
+      "horizon": "later",
+      "relatedFindingIds": []
+    }
   ],
-
   "findings": [
     {
       "id": "F-P1",
@@ -154,7 +319,13 @@
       "problem": "Die Stylesheet enthält keinen einzigen :focus- oder :focus-visible-Stil. Interaktive Elemente (Navigation, Karten, Formularfelder, Theme-Toggle, Mobile-Menü) zeigen damit keinen erkennbaren Tastaturfokus über den Browser-Default hinaus — und Custom-Styling überdeckt den Default an mehreren Stellen.",
       "evidence": {
         "summary": "Suche nach ':focus-visible' und ':focus {' in style.css liefert keine echte Fokus-Regel (nur ein zufälliger Substring in '.focus-inner').",
-        "locations": [{ "source": "source_code", "file": "style.css", "note": "Kein :focus-visible-Selektor im gesamten Stylesheet vorhanden." }],
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "style.css",
+            "note": "Kein :focus-visible-Selektor im gesamten Stylesheet vorhanden."
+          }
+        ],
         "measurements": []
       },
       "recommendation": "Einen globalen, token-basierten Fokus-Stil ergänzen, z. B.: ':focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:4px; }'. Einmal definiert, wirkt er auf allen interaktiven Elementen. Sicherstellen, dass kein 'outline:none' ohne Ersatz gesetzt ist.",
@@ -163,11 +334,35 @@
       "uxPrinciple": "Nielsen #1: Sichtbarkeit des Systemstatus",
       "accessibility": {
         "isAccessibilityIssue": true,
-        "wcag": [{ "criterion": "2.4.7", "name": "Focus Visible", "level": "AA" }, { "criterion": "2.1.1", "name": "Keyboard", "level": "A" }]
+        "wcag": [
+          {
+            "criterion": "2.4.7",
+            "name": "Focus Visible",
+            "level": "AA"
+          },
+          {
+            "criterion": "2.1.1",
+            "name": "Keyboard",
+            "level": "A"
+          }
+        ]
       },
-      "media": [{ "id": "M-P1", "type": "screenshot", "url": null, "placeholder": true, "caption": "Tab-Durchlauf ohne erkennbaren Fokus-Indikator", "alt": "" }],
+      "media": [
+        {
+          "id": "M-P1",
+          "type": "screenshot",
+          "url": null,
+          "placeholder": true,
+          "caption": "Tab-Durchlauf ohne erkennbaren Fokus-Indikator",
+          "alt": ""
+        }
+      ],
       "isOpportunity": false,
-      "tags": ["a11y", "keyboard", "quick-win"]
+      "tags": [
+        "a11y",
+        "keyboard",
+        "quick-win"
+      ]
     },
     {
       "id": "F-P2",
@@ -183,7 +378,19 @@
       "problem": "Die Seite respektiert die System-Einstellung 'Bewegung reduzieren' nicht. Horizontales Wheel-Scrolling, Count-up-Animationen und Reveal-Transitions laufen für alle Nutzer:innen identisch — ohne reduzierte Variante.",
       "evidence": {
         "summary": "Keine '@media (prefers-reduced-motion)'-Regel in style.css; Animationen werden unbedingt in script.js gestartet.",
-        "locations": [{ "source": "source_code", "file": "style.css", "note": "Kein reduced-motion-Media-Query." }, { "source": "source_code", "file": "script.js", "lines": "78-135", "note": "Animationen ohne Motion-Guard." }],
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "style.css",
+            "note": "Kein reduced-motion-Media-Query."
+          },
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "78-135",
+            "note": "Animationen ohne Motion-Guard."
+          }
+        ],
         "measurements": []
       },
       "recommendation": "Einen Reduced-Motion-Block ergänzen: '@media (prefers-reduced-motion: reduce){ *{ animation:none!important; transition:none!important; scroll-behavior:auto!important } }'. Count-ups in diesem Fall direkt auf den Endwert setzen, statt hochzuzählen. JS kann window.matchMedia('(prefers-reduced-motion: reduce)') abfragen.",
@@ -192,11 +399,21 @@
       "uxPrinciple": "Inklusives Design / Nutzerkontrolle",
       "accessibility": {
         "isAccessibilityIssue": true,
-        "wcag": [{ "criterion": "2.3.3", "name": "Animation from Interactions", "level": "AAA" }]
+        "wcag": [
+          {
+            "criterion": "2.3.3",
+            "name": "Animation from Interactions",
+            "level": "AAA"
+          }
+        ]
       },
       "media": [],
       "isOpportunity": false,
-      "tags": ["a11y", "motion", "quick-win"]
+      "tags": [
+        "a11y",
+        "motion",
+        "quick-win"
+      ]
     },
     {
       "id": "F-P3",
@@ -212,7 +429,13 @@
       "problem": "Die Seite verwendet <nav> und <footer>, aber kein <main>-Element und keinen 'Zum Inhalt springen'-Link. Screenreader-Nutzer:innen können weder die Hauptregion ansteuern noch die wiederkehrende Navigation überspringen.",
       "evidence": {
         "summary": "Im HTML kein <main>-Tag; kein Skip-Link als erster fokussierbarer Knoten.",
-        "locations": [{ "source": "source_code", "file": "index.html", "note": "Landmark <main> fehlt; erster fokussierbarer Knoten ist der Logo-Link." }],
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "index.html",
+            "note": "Landmark <main> fehlt; erster fokussierbarer Knoten ist der Logo-Link."
+          }
+        ],
         "measurements": []
       },
       "recommendation": "Den Inhalts-Track in <main id=\"main\"> kapseln und als allerersten Body-Knoten einen visuell versteckten, bei Fokus sichtbaren Skip-Link einfügen: '<a class=\"skip\" href=\"#main\">Zum Inhalt springen</a>'. Optional Sektionen als <section aria-label> auszeichnen.",
@@ -221,11 +444,26 @@
       "uxPrinciple": "Nielsen #7: Flexibilität & Effizienz",
       "accessibility": {
         "isAccessibilityIssue": true,
-        "wcag": [{ "criterion": "1.3.1", "name": "Info and Relationships", "level": "A" }, { "criterion": "2.4.1", "name": "Bypass Blocks", "level": "A" }]
+        "wcag": [
+          {
+            "criterion": "1.3.1",
+            "name": "Info and Relationships",
+            "level": "A"
+          },
+          {
+            "criterion": "2.4.1",
+            "name": "Bypass Blocks",
+            "level": "A"
+          }
+        ]
       },
       "media": [],
       "isOpportunity": false,
-      "tags": ["a11y", "landmarks", "quick-win"]
+      "tags": [
+        "a11y",
+        "landmarks",
+        "quick-win"
+      ]
     },
     {
       "id": "F-P4",
@@ -242,9 +480,26 @@
       "evidence": {
         "summary": "Karten reagieren nur auf 'click'; keine Keyboard-Aktivierung; Overlays ohne Dialog-Semantik und ohne Fokusverwaltung.",
         "locations": [
-          { "source": "source_code", "file": "script.js", "lines": "175-176", "selector": ".sk-card[data-skill]", "note": "click-only" },
-          { "source": "source_code", "file": "script.js", "lines": "193-194", "selector": ".proj-card[data-proj]", "note": "click-only" },
-          { "source": "source_code", "file": "index.html", "lines": "269-294", "note": "Overlays ohne role=dialog/aria-modal/Fokus-Trap" }
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "175-176",
+            "selector": ".sk-card[data-skill]",
+            "note": "click-only"
+          },
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "193-194",
+            "selector": ".proj-card[data-proj]",
+            "note": "click-only"
+          },
+          {
+            "source": "source_code",
+            "file": "index.html",
+            "lines": "269-294",
+            "note": "Overlays ohne role=dialog/aria-modal/Fokus-Trap"
+          }
         ],
         "measurements": []
       },
@@ -255,14 +510,39 @@
       "accessibility": {
         "isAccessibilityIssue": true,
         "wcag": [
-          { "criterion": "2.1.1", "name": "Keyboard", "level": "A" },
-          { "criterion": "4.1.2", "name": "Name, Role, Value", "level": "A" },
-          { "criterion": "2.4.3", "name": "Focus Order", "level": "A" }
+          {
+            "criterion": "2.1.1",
+            "name": "Keyboard",
+            "level": "A"
+          },
+          {
+            "criterion": "4.1.2",
+            "name": "Name, Role, Value",
+            "level": "A"
+          },
+          {
+            "criterion": "2.4.3",
+            "name": "Focus Order",
+            "level": "A"
+          }
         ]
       },
-      "media": [{ "id": "M-P4", "type": "screenshot", "url": null, "placeholder": true, "caption": "Projekt-Karten-Grid und geöffnetes Detail-Overlay", "alt": "" }],
+      "media": [
+        {
+          "id": "M-P4",
+          "type": "screenshot",
+          "url": null,
+          "placeholder": true,
+          "caption": "Projekt-Karten-Grid und geöffnetes Detail-Overlay",
+          "alt": ""
+        }
+      ],
       "isOpportunity": false,
-      "tags": ["a11y", "keyboard", "dialog"]
+      "tags": [
+        "a11y",
+        "keyboard",
+        "dialog"
+      ]
     },
     {
       "id": "F-P5",
@@ -279,9 +559,24 @@
       "evidence": {
         "summary": "wheel-Handler mit preventDefault lenkt deltaY in scrollLeft; Nav-Links nutzen scrollIntoView statt echter Anker; kein Fokus-Transfer auf das Zielpanel.",
         "locations": [
-          { "source": "source_code", "file": "script.js", "lines": "38-46", "note": "wheel→horizontal, preventDefault" },
-          { "source": "source_code", "file": "script.js", "lines": "48-55", "note": "Nav via scrollIntoView, kein href-Ziel" },
-          { "source": "source_code", "file": "index.html", "lines": "33-38", "note": "href=\"#\" data-idx" }
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "38-46",
+            "note": "wheel→horizontal, preventDefault"
+          },
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "48-55",
+            "note": "Nav via scrollIntoView, kein href-Ziel"
+          },
+          {
+            "source": "source_code",
+            "file": "index.html",
+            "lines": "33-38",
+            "note": "href=\"#\" data-idx"
+          }
         ],
         "measurements": []
       },
@@ -291,11 +586,21 @@
       "uxPrinciple": "Nielsen #3: Nutzerkontrolle & Freiheit",
       "accessibility": {
         "isAccessibilityIssue": true,
-        "wcag": [{ "criterion": "2.4.3", "name": "Focus Order", "level": "A" }]
+        "wcag": [
+          {
+            "criterion": "2.4.3",
+            "name": "Focus Order",
+            "level": "A"
+          }
+        ]
       },
       "media": [],
       "isOpportunity": false,
-      "tags": ["navigation", "scroll", "robustness"]
+      "tags": [
+        "navigation",
+        "scroll",
+        "robustness"
+      ]
     },
     {
       "id": "F-P6",
@@ -311,12 +616,43 @@
       "problem": "Mehrere als Text genutzte Farb-Token unterschreiten das Mindestkontrastverhältnis von 4.5:1 für normalen Text. Betroffen sind verbreitete Sekundärtexte (--muted) in beiden Themes sowie grüner Text (--green) auf hellem Grund.",
       "evidence": {
         "summary": "Aus den CSS-Token berechnete Kontrastverhältnisse gegen die jeweiligen Hintergründe.",
-        "locations": [{ "source": "source_code", "file": "style.css", "lines": "1-60", "note": "Token-Definitionen --muted / --green" }],
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "style.css",
+            "lines": "1-60",
+            "note": "Token-Definitionen --muted / --green"
+          }
+        ],
         "measurements": [
-          { "label": "--muted #8284a8 auf Weiß (Light)", "value": 3.61, "unit": ":1", "threshold": 4.5, "passes": false },
-          { "label": "--green #06c48b als Text auf Weiß (Light)", "value": 2.26, "unit": ":1", "threshold": 4.5, "passes": false },
-          { "label": "--muted #5a5878 auf #111633 (Dark)", "value": 2.61, "unit": ":1", "threshold": 4.5, "passes": false },
-          { "label": "--accent #4361ee auf Weiß (Vergleich, OK)", "value": 5.02, "unit": ":1", "threshold": 4.5, "passes": true }
+          {
+            "label": "--muted #8284a8 auf Weiß (Light)",
+            "value": 3.61,
+            "unit": ":1",
+            "threshold": 4.5,
+            "passes": false
+          },
+          {
+            "label": "--green #06c48b als Text auf Weiß (Light)",
+            "value": 2.26,
+            "unit": ":1",
+            "threshold": 4.5,
+            "passes": false
+          },
+          {
+            "label": "--muted #5a5878 auf #111633 (Dark)",
+            "value": 2.61,
+            "unit": ":1",
+            "threshold": 4.5,
+            "passes": false
+          },
+          {
+            "label": "--accent #4361ee auf Weiß (Vergleich, OK)",
+            "value": 5.02,
+            "unit": ":1",
+            "threshold": 4.5,
+            "passes": true
+          }
         ]
       },
       "recommendation": "--muted in beiden Themes anpassen (Light z. B. in Richtung #5f6186 abdunkeln, Dark in Richtung #8a88b0 aufhellen) und --green nur für Flächen/Icons verwenden; für grünen Text eine dunklere Variante definieren. Anschließend mit einem Kontrast-Checker gegen alle realen Hintergründe gegenprüfen.",
@@ -325,11 +661,21 @@
       "uxPrinciple": "Lesbarkeit / visuelle Zugänglichkeit",
       "accessibility": {
         "isAccessibilityIssue": true,
-        "wcag": [{ "criterion": "1.4.3", "name": "Contrast (Minimum)", "level": "AA" }]
+        "wcag": [
+          {
+            "criterion": "1.4.3",
+            "name": "Contrast (Minimum)",
+            "level": "AA"
+          }
+        ]
       },
       "media": [],
       "isOpportunity": false,
-      "tags": ["a11y", "contrast", "quick-win"]
+      "tags": [
+        "a11y",
+        "contrast",
+        "quick-win"
+      ]
     },
     {
       "id": "F-P7",
@@ -345,17 +691,29 @@
       "problem": "Alle drei Projekte des Ökosystems teilen erkennbar dieselbe Designsprache (Token-CSS, nummerierte Formularfelder, Hero mit hervorgehobenem Schlusswort), implementieren Tokens und Kernkomponenten aber jeweils eigenständig. Das erzeugt dreifachen Pflegeaufwand und Drift-Risiko.",
       "evidence": {
         "summary": "Token-Sets und Komponenten (Formular, Navigation, Card) sind über die Seiten dupliziert, nicht gemeinsam genutzt.",
-        "locations": [{ "source": "source_code", "file": "style.css", "note": "Eigenes Token-Set; identische Muster auf den Schwesterseiten dupliziert." }],
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "style.css",
+            "note": "Eigenes Token-Set; identische Muster auf den Schwesterseiten dupliziert."
+          }
+        ],
         "measurements": []
       },
       "recommendation": "Eine geteilte tokens.css (Farben, Spacing, Typo, Radius) plus 2–3 wiederverwendbare Komponenten (Button, Form-Field, Card) extrahieren und in allen drei Projekten einbinden. Kein Framework nötig — reines CSS/Vanilla reicht.",
       "userBenefit": "Konsistentes Verhalten und Erscheinungsbild über das gesamte Kirchberg-/Portfolio-Ökosystem hinweg.",
       "businessBenefit": "Senkt den Wartungsaufwand dauerhaft und verhindert, dass Korrekturen mehrfach nachgezogen werden müssen.",
       "uxPrinciple": "Nielsen #4: Konsistenz & Standards",
-      "accessibility": { "isAccessibilityIssue": false, "wcag": [] },
+      "accessibility": {
+        "isAccessibilityIssue": false,
+        "wcag": []
+      },
       "media": [],
       "isOpportunity": false,
-      "tags": ["design-system", "maintainability"]
+      "tags": [
+        "design-system",
+        "maintainability"
+      ]
     },
     {
       "id": "F-P8",
@@ -372,8 +730,18 @@
       "evidence": {
         "summary": "formSuccess/formError ohne role=status/aria-live; <label> ohne for-Attribut.",
         "locations": [
-          { "source": "source_code", "file": "index.html", "lines": "253-260", "note": "Labels ohne for; Status-Boxen ohne aria-live" },
-          { "source": "source_code", "file": "script.js", "lines": "210-214", "note": "Status nur visuell umgeschaltet" }
+          {
+            "source": "source_code",
+            "file": "index.html",
+            "lines": "253-260",
+            "note": "Labels ohne for; Status-Boxen ohne aria-live"
+          },
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "210-214",
+            "note": "Status nur visuell umgeschaltet"
+          }
         ],
         "measurements": []
       },
@@ -383,11 +751,25 @@
       "uxPrinciple": "Nielsen #9: Fehler erkennen & beheben",
       "accessibility": {
         "isAccessibilityIssue": true,
-        "wcag": [{ "criterion": "4.1.3", "name": "Status Messages", "level": "AA" }, { "criterion": "3.3.2", "name": "Labels or Instructions", "level": "A" }]
+        "wcag": [
+          {
+            "criterion": "4.1.3",
+            "name": "Status Messages",
+            "level": "AA"
+          },
+          {
+            "criterion": "3.3.2",
+            "name": "Labels or Instructions",
+            "level": "A"
+          }
+        ]
       },
       "media": [],
       "isOpportunity": false,
-      "tags": ["a11y", "forms"]
+      "tags": [
+        "a11y",
+        "forms"
+      ]
     },
     {
       "id": "F-P9",
@@ -403,22 +785,46 @@
       "problem": "Die Seite hat bereits einen Fortschrittsbalken und Panel-Indizes, nutzt dieses Potenzial aber nicht für gezielte Orientierung oder teilbare Tiefenlinks. Recruiter:innen, die einen bestimmten Case verlinken oder direkt anspringen wollen, können das nicht.",
       "evidence": {
         "summary": "Fortschrittsbalken (pFill) und data-idx vorhanden; keine URL-Hashes pro Sektion/Case, keine Deeplinks.",
-        "locations": [{ "source": "source_code", "file": "script.js", "lines": "126-129", "note": "Progress-Berechnung vorhanden, ohne URL-Sync" }]
+        "locations": [
+          {
+            "source": "source_code",
+            "file": "script.js",
+            "lines": "126-129",
+            "note": "Progress-Berechnung vorhanden, ohne URL-Sync"
+          }
+        ]
       },
       "recommendation": "Pro Sektion und idealerweise pro Projekt-Case einen URL-Hash vergeben (z. B. #projekte/car-lec), beim Öffnen eines Overlays die URL aktualisieren (history.replaceState) und beim Laden mit Hash das passende Panel/Overlay öffnen. So entstehen teilbare, bookmarkbare Deeplinks — ein konkreter Mehrwert für Bewerbungen, bei denen ein einzelner Case verlinkt wird.",
       "userBenefit": "Nutzer:innen können einen bestimmten Case direkt aufrufen, teilen und per Browser-Zurück sauber schließen.",
       "businessBenefit": "Macht das Portfolio gezielt referenzierbar (Bewerbung, LinkedIn-Post zu einem Case) und verbessert SEO/Teilbarkeit.",
       "uxPrinciple": "Nielsen #7: Flexibilität & Effizienz",
-      "accessibility": { "isAccessibilityIssue": false, "wcag": [] },
+      "accessibility": {
+        "isAccessibilityIssue": false,
+        "wcag": []
+      },
       "media": [],
       "isOpportunity": true,
-      "tags": ["opportunity", "deeplink", "delight"]
+      "tags": [
+        "opportunity",
+        "deeplink",
+        "delight"
+      ]
     }
   ],
-
   "attachments": [
-    { "id": "A-COVER", "type": "screenshot", "url": null, "placeholder": true, "caption": "Startansicht (Hero) des Portfolios", "alt": "" }
+    {
+      "id": "A-COVER",
+      "type": "screenshot",
+      "url": null,
+      "placeholder": true,
+      "caption": "Startansicht (Hero) des Portfolios",
+      "alt": ""
+    }
   ],
-
-  "tags": ["portfolio", "one-pager", "vanilla-js", "dark-mode"]
+  "tags": [
+    "portfolio",
+    "one-pager",
+    "vanilla-js",
+    "dark-mode"
+  ]
 }

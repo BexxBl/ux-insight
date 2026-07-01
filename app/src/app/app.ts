@@ -12,6 +12,6 @@ export class App implements OnInit {
   private readonly reportService = inject(ReportService);
 
   ngOnInit(): void {
-    this.reportService.loadReport('/reports/rebeccablischke-de/v1/report.json');
+    this.reportService.loadReport('reports/rebeccablischke-de/v1/report.json');
   }
 }

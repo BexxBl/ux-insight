@@ -28,6 +28,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "data/reports",
+                "output": "reports"
               }
             ],
             "styles": ["src/styles.scss"]

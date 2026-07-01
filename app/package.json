@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "copy-reports": "node scripts/copy-reports.js",
+    "prestart": "npm run copy-reports",
     "start": "ng serve",
+    "prebuild": "npm run copy-reports",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

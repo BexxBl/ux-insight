@@ -1,0 +1,42 @@
+name: Documentation
+description: Report missing, incorrect, or unclear documentation.
+title: "docs: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is missing, wrong, or unclear?
+      placeholder: "The schema guide does not explain how `previousReportId` links reports."
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: Files Affected
+      description: Which files need to be created or updated?
+      placeholder: |
+        - docs/schema-guide.md
+        - docs/ARCHITECTURE.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should a reader understand after the documentation is updated?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      placeholder: |
+        - [ ] `schema-guide.md` explains the `previousReportId` field and links to the history section of ARCHITECTURE.md.
+        - [ ] An example is provided.
+    validations:
+      required: true

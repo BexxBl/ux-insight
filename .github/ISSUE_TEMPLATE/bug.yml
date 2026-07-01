@@ -1,0 +1,53 @@
+name: Bug Report
+description: Report something that is broken or behaving incorrectly.
+title: "fix: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behaviour
+      description: What should happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behaviour
+      description: What happens instead? Include error messages or screenshots if helpful.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Open the report viewer.
+        2. Navigate to the findings section.
+        3. Click on a finding with no evidence field.
+        4. The page crashes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, OS, Node version, Angular CLI version — whatever is relevant.
+      placeholder: |
+        Browser: Chrome 125
+        OS: macOS 14.4
+        Node: 22.2.0
+        Angular CLI: 22.0.4
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes
+      description: Workarounds, related issues, or anything else that might help. Optional.
+    validations:
+      required: false

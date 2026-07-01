@@ -1,0 +1,50 @@
+name: Feature Request
+description: Propose a new feature or behaviour change.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences describing the feature.
+      placeholder: "Add a severity filter to the findings list."
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should be possible once this is implemented?
+      placeholder: "Users can narrow the findings list to critical and high severity items."
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Why is this needed? What problem does it solve or what value does it add?
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Specific, verifiable conditions that must be true for this to be considered done.
+      placeholder: |
+        - [ ] Filtering by severity updates the visible findings without a page reload.
+        - [ ] All severity values from the schema are available as filter options.
+        - [ ] The active filter is reflected in the URL.
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes
+      description: Relevant context, links, screenshots, or prior discussion. Optional.
+    validations:
+      required: false

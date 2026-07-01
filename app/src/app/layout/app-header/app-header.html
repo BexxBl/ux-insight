@@ -1,0 +1,17 @@
+<header class="header" role="banner">
+  <div class="header__brand">
+    <span class="header__logo" aria-hidden="true">UX</span>
+    <span class="header__wordmark">Insight</span>
+  </div>
+
+  @if (reportService.isLoading()) {
+    <span class="header__status" aria-live="polite">Loading…</span>
+  } @else if (reportService.report(); as report) {
+    <div class="header__report-context">
+      <span class="header__separator" aria-hidden="true">/</span>
+      <span class="header__report-title" [title]="report.target.name">{{ report.target.name }}</span>
+    </div>
+  } @else if (reportService.error()) {
+    <span class="header__status header__status--error" role="alert">Failed to load report</span>
+  }
+</header>

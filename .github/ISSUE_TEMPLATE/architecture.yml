@@ -1,0 +1,57 @@
+name: Architecture Decision
+description: Propose or record a significant architectural or design decision.
+title: "arch: "
+labels: ["architecture"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose or document a decision that affects the structure, contracts, or long-term direction of the project. Accepted decisions should be summarised in `docs/ARCHITECTURE.md`.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What is the background? What constraints or requirements are in play?
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What specific problem or question needs to be resolved?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solutions
+    attributes:
+      label: Possible Solutions
+      description: What options were considered? Briefly describe the trade-offs of each.
+      placeholder: |
+        **Option A — ...**
+        Pro: ...
+        Con: ...
+
+        **Option B — ...**
+        Pro: ...
+        Con: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision
+      description: Which option is chosen and why? Leave blank if still open for discussion.
+    validations:
+      required: false
+
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences
+      description: What changes as a result? What becomes easier or harder?
+    validations:
+      required: false

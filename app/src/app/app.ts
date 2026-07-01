@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { ReportService } from './services/report.service';
+import { AppShellComponent } from './layout/app-shell/app-shell';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [AppShellComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0.0",
+  "reportId": "CHANGEME-0001",
+  "reportType": "ux_audit",
+  "status": "draft",
+  "locale": "de-DE",
+  "i18n": {},
+  "client": {
+    "clientId": "changeme",
+    "name": "Client Name"
+  },
+  "branding": {},
+  "theme": "auto",
+  "target": {
+    "targetId": "changeme",
+    "name": "Target Name",
+    "url": "https://example.com/",
+    "type": "website",
+    "description": ""
+  },
+  "meta": {
+    "createdAt": "2026-01-01T00:00:00+01:00",
+    "version": "1.0",
+    "previousReportId": null,
+    "author": {
+      "name": "UX Insight",
+      "role": "UX Lead",
+      "organization": "UX Insight"
+    },
+    "methodology": {
+      "sources": [
+        "source_code",
+        "heuristic_expert_review"
+      ],
+      "standards": [
+        "WCAG 2.2 AA",
+        "Nielsen 10 Heuristics"
+      ],
+      "limitations": [
+        "List what could not be verified here."
+      ]
+    }
+  },
+  "summary": {
+    "headline": "",
+    "narrative": "",
+    "keyTakeaways": [],
+    "aiGenerated": false,
+    "aiModel": null,
+    "generatedAt": null
+  },
+  "scoring": {
+    "scale": {
+      "min": 0,
+      "max": 100,
+      "bands": [
+        {
+          "label": "Kritisch",
+          "min": 0,
+          "max": 39,
+          "color": "#ef4444"
+        },
+        {
+          "label": "Schwach",
+          "min": 40,
+          "max": 59,
+          "color": "#f59e0b"
+        },
+        {
+          "label": "Solide",
+          "min": 60,
+          "max": 74,
+          "color": "#eab308"
+        },
+        {
+          "label": "Stark",
+          "min": 75,
+          "max": 89,
+          "color": "#06c48b"
+        },
+        {
+          "label": "Exzellent",
+          "min": 90,
+          "max": 100,
+          "color": "#10b981"
+        }
+      ]
+    },
+    "overall": 0,
+    "overallBand": "Kritisch",
+    "categories": [
+      {
+        "key": "accessibility",
+        "label": "Barrierefreiheit",
+        "score": 0,
+        "weight": 1.5,
+        "band": "Kritisch",
+        "rationale": "",
+        "previousScore": null
+      }
+    ]
+  },
+  "strengths": [],
+  "quickWins": [],
+  "recommendationsRoadmap": [],
+  "findings": [
+    {
+      "id": "F-1",
+      "rank": 1,
+      "categoryKey": "accessibility",
+      "categoryLabel": "Barrierefreiheit",
+      "title": "",
+      "severity": "medium",
+      "businessImpact": "medium",
+      "effort": "low",
+      "confidence": "high",
+      "status": "open",
+      "problem": "",
+      "evidence": {
+        "summary": "",
+        "locations": [],
+        "measurements": []
+      },
+      "recommendation": "",
+      "userBenefit": "",
+      "businessBenefit": "",
+      "uxPrinciple": "",
+      "accessibility": {
+        "isAccessibilityIssue": true,
+        "wcag": []
+      },
+      "media": [],
+      "isOpportunity": false,
+      "tags": []
+    }
+  ],
+  "attachments": [],
+  "tags": []
+}

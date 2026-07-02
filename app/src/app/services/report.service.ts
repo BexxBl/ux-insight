@@ -12,7 +12,7 @@ export class ReportService {
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
 
-  loadReport(path: string): void {
+  public loadReport(path: string): void {
     const url = new URL(path, this.document.baseURI).toString();
 
     this.isLoading.set(true);

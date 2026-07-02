@@ -9,9 +9,9 @@ import { ScoreCardComponent } from '../../shared/score-card/score-card';
   imports: [ScoreCardComponent],
 })
 export class ReportPageComponent {
-  readonly #reportService = inject(ReportService);
+  private readonly reportService = inject(ReportService);
 
-  readonly report = this.#reportService.report;
-  readonly isLoading = this.#reportService.isLoading;
-  readonly error = this.#reportService.error;
+  readonly report = this.reportService.report;
+  readonly isLoading = this.reportService.isLoading;
+  readonly error = this.reportService.error;
 }

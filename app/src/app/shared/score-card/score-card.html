@@ -1,0 +1,26 @@
+<article
+  class="score-card"
+  [class.score-card--large]="size() === 'large'"
+  [attr.data-level]="level()"
+>
+  <header class="score-card__header">
+    <span class="score-card__label">{{ label() }}</span>
+    @if (band()) {
+      <span class="score-card__band">{{ band() }}</span>
+    }
+  </header>
+  <div class="score-card__body">
+    <span class="score-card__score">{{ score() }}</span>
+    <span class="score-card__max" aria-hidden="true">/ {{ scaleMax() }}</span>
+  </div>
+  <div
+    class="score-card__bar"
+    role="progressbar"
+    [attr.aria-valuenow]="score()"
+    [attr.aria-valuemin]="0"
+    [attr.aria-valuemax]="scaleMax()"
+    [attr.aria-label]="label() + ' score'"
+  >
+    <div class="score-card__bar-fill" [style.width.%]="percentage()"></div>
+  </div>
+</article>

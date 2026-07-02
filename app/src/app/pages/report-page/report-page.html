@@ -1,3 +1,38 @@
 <div class="report-page">
-  <p class="report-page__placeholder">Report content coming soon.</p>
+  @if (isLoading()) {
+    <p class="report-page__status" role="status">Loading report…</p>
+  } @else if (error()) {
+    <p class="report-page__status report-page__status--error" role="alert">
+      {{ error() }}
+    </p>
+  } @else if (report(); as r) {
+    <section class="report-page__scores" aria-labelledby="scores-heading">
+      <h2 id="scores-heading" class="report-page__section-title">
+        Score Overview
+      </h2>
+
+      <div class="report-page__overall">
+        <app-score-card
+          [label]="'Overall'"
+          [score]="r.scoring.overall"
+          [scaleMax]="r.scoring.scale.max"
+          [band]="r.scoring.overallBand"
+          [size]="'large'"
+        />
+      </div>
+
+      <ul class="report-page__category-grid" aria-label="Category scores">
+        @for (cat of r.scoring.categories; track cat.key) {
+          <li class="report-page__category-item">
+            <app-score-card
+              [label]="cat.label"
+              [score]="cat.score"
+              [scaleMax]="r.scoring.scale.max"
+              [band]="cat.band"
+            />
+          </li>
+        }
+      </ul>
+    </section>
+  }
 </div>

@@ -2,7 +2,42 @@
   max-width: 64rem;
 }
 
-.report-page__placeholder {
+.report-page__status {
   font-size: var(--text-sm);
-  color: var(--color-text-subtle);
+  color: var(--color-text-muted);
+  margin: 0;
+
+  &--error {
+    color: var(--color-danger);
+  }
+}
+
+.report-page__scores {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.report-page__section-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.report-page__overall {
+  max-width: 22rem;
+}
+
+.report-page__category-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--space-4);
+}
+
+.report-page__category-item {
+  display: flex;
 }

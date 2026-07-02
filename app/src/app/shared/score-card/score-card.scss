@@ -1,0 +1,91 @@
+:host {
+  display: block;
+}
+
+.score-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  box-sizing: border-box;
+
+  &--large {
+    padding: var(--space-6) var(--space-8);
+
+    .score-card__score {
+      font-size: var(--text-3xl);
+      font-weight: var(--font-bold);
+    }
+  }
+}
+
+.score-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.score-card__label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.score-card__band {
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  color: var(--color-text-subtle);
+  white-space: nowrap;
+}
+
+.score-card__body {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.score-card__score {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  line-height: var(--leading-tight);
+}
+
+.score-card__max {
+  font-size: var(--text-sm);
+  color: var(--color-text-subtle);
+}
+
+.score-card__bar {
+  height: 4px;
+  background-color: var(--color-surface-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.score-card__bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  transition: width var(--transition-normal);
+}
+
+.score-card[data-level='high'] .score-card__bar-fill {
+  background-color: var(--color-success);
+}
+
+.score-card[data-level='medium'] .score-card__bar-fill {
+  background-color: var(--color-warning);
+}
+
+.score-card[data-level='low'] .score-card__bar-fill {
+  background-color: var(--color-danger);
+}

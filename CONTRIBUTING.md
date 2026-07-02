@@ -126,6 +126,8 @@ Pre-commit hooks (Husky + lint-staged) run Prettier automatically on staged file
 
 ## Coding Style
 
+Full standards are documented in [`docs/development/ENGINEERING_STANDARDS.md`](docs/development/ENGINEERING_STANDARDS.md). The rules below are a summary.
+
 ### TypeScript / Angular
 
 - Angular standalone components only. No NgModules.
@@ -152,6 +154,19 @@ Pre-commit hooks (Husky + lint-staged) run Prettier automatically on staged file
 - Write documentation in the present tense, in clear English.
 - Do not create placeholder sections. If a section is not ready to be written, omit it entirely.
 - Keep `CHANGELOG.md` updated with every merged PR.
+
+---
+
+## Testing
+
+The testing approach — runner, scope, and style — is documented in [`docs/development/TESTING_STRATEGY.md`](docs/development/TESTING_STRATEGY.md).
+
+Run unit tests locally with:
+
+```bash
+cd app
+npm test
+```
 
 ---
 

@@ -12,7 +12,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 ### Added
 - Design system foundation: CSS custom property token layer in `app/src/styles.scss` with light and dark themes
 - `app/src/app/shared/design-tokens.ts` — TypeScript constants for all token names
-- `docs/design-system.md` — full design token reference and usage rules
+- `docs/design/DESIGN_SYSTEM.md` — full design token reference and usage rules
 - `docs/ARCHITECTURE.md` — JSON-first architecture documentation
 - `docs/PRODUCT_PRINCIPLES.md` — product decision framework
 - `VISION.md` — project vision, long-term goals, and non-goals

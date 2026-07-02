@@ -88,7 +88,7 @@ All colors come from CSS custom properties defined in `app/src/styles.scss`. Nev
 | `schemas/ux-report/v1.0.0.json` | The schema contract — do not modify without explicit request |
 | `app/src/styles.scss` | Design token definitions (CSS custom properties) |
 | `app/src/app/shared/design-tokens.ts` | Token name constants for TypeScript |
-| `docs/design-system.md` | Design token documentation |
+| `docs/design/DESIGN_SYSTEM.md` | Design token documentation |
 | `docs/ARCHITECTURE.md` | System architecture reference |
 | `docs/PRODUCT_PRINCIPLES.md` | Product decision framework |
 | `docs/schema-guide.md` | Schema authoring guide |

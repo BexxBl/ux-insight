@@ -60,6 +60,42 @@ docs: update architecture overview
 
 ---
 
+## Coding Conventions
+
+### Class member order
+
+Always arrange class members in this order, with a blank line between each group:
+
+1. static readonly constants
+2. injected dependencies
+3. inputs / outputs
+4. signals / public state
+5. private state
+6. computed values
+7. constructor (only when required)
+8. lifecycle hooks
+9. public methods
+10. protected methods
+11. private methods
+
+### Visibility modifiers
+
+- Angular lifecycle hooks (`ngOnInit`, `ngOnDestroy`, etc.) are written **without** an explicit modifier.
+- All other methods must have an explicit `public`, `protected`, or `private` modifier.
+
+### Other rules
+
+- Prefer `readonly` on class members and parameters wherever the value is not reassigned.
+- Use `inject()` for dependency injection, not constructor injection.
+- Use `signal()`, `computed()`, `input()`, `output()` — no RxJS for local UI state.
+- Use `@if` / `@for` / `@switch` control flow — not `*ngIf` / `*ngFor`.
+- `@for` must include a `track` expression with a stable unique identifier.
+- Templates must use semantic HTML and descriptive `alt` text.
+
+Full reference: `docs/development/ENGINEERING_STANDARDS.md`
+
+---
+
 ## Tech Stack
 
 - Angular 22 — standalone components, Signals, no NgModules
@@ -93,3 +129,5 @@ All colors come from CSS custom properties defined in `app/src/styles.scss`. Nev
 | `docs/PRODUCT_PRINCIPLES.md` | Product decision framework |
 | `docs/schema-guide.md` | Schema authoring guide |
 | `CONTRIBUTING.md` | Branch workflow, commit conventions, coding style |
+| `docs/development/ENGINEERING_STANDARDS.md` | TypeScript/Angular coding standards |
+| `docs/development/TESTING_STRATEGY.md` | Test runner, scope, and style guide |

@@ -229,3 +229,11 @@ The file contains zero values — it is a directory of names only. All values re
 3. **Feedback tokens are for UI states.** Use success/warning/danger/info for form validation, alerts, and status indicators — not for audit severity.
 4. **Do not add `!important`.** If specificity is a problem, fix the selector hierarchy.
 5. **No hardcoded dark mode media queries in components.** Theme switching is done via the `data-theme` attribute on `<html>`. Components stay theme-agnostic.
+
+---
+
+## See also
+
+- [PRODUCT_PRINCIPLES.md](../PRODUCT_PRINCIPLES.md) — product decision framework; the "why" behind visual and feature decisions
+- [lovable-review.md](lovable-review.md) — design analysis of the Lovable prototype; OKLCH palette, layout architecture, interaction patterns
+- [component-inventory.md](component-inventory.md) — catalog of UI patterns from the prototype with Angular implementation notes

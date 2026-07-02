@@ -120,7 +120,7 @@ app/src/
 
 ## Design System
 
-The design system is token-based. All values are defined as CSS custom properties in `src/styles.scss` and documented in `docs/design-system.md`.
+The design system is token-based. All values are defined as CSS custom properties in `src/styles.scss` and documented in `docs/design/DESIGN_SYSTEM.md`.
 
 ### Theme switching
 
@@ -181,9 +181,13 @@ ux-insight/
 │           └── shared/           # Reusable utilities and token constants
 ├── docs/
 │   ├── schema-guide.md           # Field-by-field authoring guide
-│   ├── design-system.md          # Design token reference
 │   ├── ARCHITECTURE.md           # This file
-│   └── PRODUCT_PRINCIPLES.md     # Product decision framework
+│   ├── PRODUCT_PRINCIPLES.md     # Product decision framework
+│   └── design/
+│       ├── README.md             # Design documentation index
+│       ├── DESIGN_SYSTEM.md      # Design token reference
+│       ├── lovable-review.md     # Prototype design analysis
+│       └── component-inventory.md  # Component patterns
 ├── .github/
 │   ├── ISSUE_TEMPLATE/
 │   └── workflows/
